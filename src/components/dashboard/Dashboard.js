@@ -8,7 +8,7 @@ const Dashboard = (props) => {
     <div>
       <div>Dashboard</div>
       {/* Account info Component */}
-      <UserWindow className="user_window" userInfo={props.userInfo} transactions={true}/>
+      <UserWindow className="user_window" userInfo={props.userInfo} transactions={props.transactions}/>
       {/* Transactions Component */}
       <ListTransactions transactions={props.transactions} />
       {/* Pots components */}

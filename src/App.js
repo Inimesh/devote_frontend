@@ -55,6 +55,7 @@ function App() {
     let mounted = true;
     getAPIData().then((transactions) => {
       if (mounted) {
+        console.log(transactions)
         setTransactions(transactions);
       }
     });
@@ -78,7 +79,7 @@ function App() {
   // Rendering to screen ---------------------------------------------------
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <h1>Hello </h1>
       <Dashboard transactions={transactions} userInfo={userInfo}/>
     </div>
   );
