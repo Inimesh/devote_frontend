@@ -1,4 +1,6 @@
 import React from 'react';
+import ListTransactions from "./ListTransactions.js";
+import AccountInfo from "./AccountInfo.js";
 
 const Dashboard = (props) => {
 
@@ -6,8 +8,11 @@ const Dashboard = (props) => {
     <div>
       <div>Dashboard</div>
       {/* Account info Component */}
+      <AccountInfo details={/* account info from api call*/}/>
       <ListTransactions transactions={props.transactions} />
       {/* Pots components */}
     </div>
   )
 }
+
+export default Dashboard

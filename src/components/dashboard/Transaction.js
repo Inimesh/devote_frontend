@@ -7,3 +7,5 @@ const Transaction = (props) => {
     </li>
   )
 }
+
+export default Transaction

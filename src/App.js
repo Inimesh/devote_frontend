@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import Configs from "./components/configs.js";
 import {useEffect, useState } from "react";
+import Dashboard from "./components/dashboard/Dashboard.js";
 
 // const API_URL = "http://localhost:3000/api/configs";
 
