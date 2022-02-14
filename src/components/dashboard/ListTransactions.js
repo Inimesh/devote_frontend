@@ -14,9 +14,14 @@ const ListTransactions = (props) => {
     )
   })
   return (
-    <ul>
-      {transactions}
-    </ul>
+    <div>
+      <h1 className="fw-bold mb-5">Transactions</h1>
+      <div className='container-fluid'>
+        <div className='row'>
+          {transactions}
+        </div>
+      </div>
+    </div>
   )
 }
 

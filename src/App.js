@@ -58,7 +58,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello</h1>
       <Dashboard transactions={transactions} />
     </div>
   );
