@@ -5,6 +5,7 @@ const UserInfoDisplay = (props) => {
     <div>
       {/* Avatar picture */}
       <h2>{props.username}</h2>
+      <h3>{props.email}</h3>
     </div>
   )
 }
