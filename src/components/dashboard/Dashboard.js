@@ -1,4 +1,5 @@
 import React from 'react';
+import ListTransactions from "./ListTransactions";
 
 const Dashboard = (props) => {
 
@@ -11,3 +12,5 @@ const Dashboard = (props) => {
     </div>
   )
 }
+
+export default Dashboard;
