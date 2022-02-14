@@ -1,10 +1,10 @@
 import React from 'react'
 
-const UserInfoDisplay = () => {
+const UserInfoDisplay = (props) => {
   return (
     <div>
       {/* Avatar picture */}
-      {/* Username */}
+      <h2>{props.username}</h2>
     </div>
   )
 }

@@ -3,18 +3,18 @@ import TotalRounded from './TotalRounded'
 import UserInfoDisplay from './UserInfoDisplay'
 import UserInfoMenu from './UserInfoMenu'
 
-const AccountInfo = () => {
+const UserWindow = (props) => {
   return (
     <div>
       {/* UserInfoDisplay */}
       {/* TotalRounded */}
       {/* UserInfoMenu */}
-      <UserInfoDisplay />
-      <TotalRounded />
+      <UserInfoDisplay username={props.userInfo.username} />
+      <TotalRounded transactions={true}/>
       <UserInfoMenu />
       
     </div>
   )
 }
 
-export default AccountInfo
+export default UserWindow

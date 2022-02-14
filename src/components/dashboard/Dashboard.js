@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ListTransactions from "./ListTransactions.js";
-import UserInfo from "./UserInfo.js";
+import UserWindow from "./UserWindow.js";
 
 const Dashboard = (props) => {
 
@@ -8,7 +8,8 @@ const Dashboard = (props) => {
     <div>
       <div>Dashboard</div>
       {/* Account info Component */}
-      <UserInfo details={true/* account info from api call*/}/>
+      <UserWindow className="user_window" userInfo={props.userInfo} transactions={true}/>
+      {/* Transactions Component */}
       <ListTransactions transactions={props.transactions} />
       {/* Pots components */}
     </div>
