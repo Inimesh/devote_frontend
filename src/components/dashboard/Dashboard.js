@@ -5,13 +5,12 @@ import UserWindow from "./UserWindow.js";
 const Dashboard = (props) => {
 
   return (
-    <div>
-      <div>Dashboard</div>
-      {/* Account info Component */}
-      <UserWindow className="user_window" userInfo={props.userInfo} transactions={props.transactions}/>
-      {/* Transactions Component */}
-      <ListTransactions transactions={props.transactions} />
-      {/* Pots components */}
+    <div className="container-fluid p-sm-3">
+      <div className="row">
+        <div className="col-sm-2"><UserWindow className="user_window" userInfo={props.userInfo} transactions={props.transactions}/></div>
+        <div className="col-sm-6"><ListTransactions transactions={props.transactions} /></div>
+        <div className="col-sm-4">Pots{/* Pots components */}</div>
+      </div>
     </div>
   )
 }

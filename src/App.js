@@ -79,7 +79,6 @@ function App() {
   // Rendering to screen ---------------------------------------------------
   return (
     <div className="App">
-      <h1>Hello </h1>
       <Dashboard transactions={transactions} userInfo={userInfo}/>
     </div>
   );
