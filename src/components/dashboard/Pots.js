@@ -1,11 +1,17 @@
 import React from 'react'
 import Pot from './Pot'
 
+
+const renderPots = (receiverAccountData) => {
+  return receiverAccountData.map((account) => {
+    return <Pot key={account.id} accountInfo={account}/>
+  })
+}
+
 const Pots = (props) => {
   return (
     <div>
-      {/* Dynamically render lots of Pot components here */}
-      <Pot className={true} accountName={true} amount={true}/>
+      {renderPots(props.receiverAccountInfo)}
     </div>
   )
 }

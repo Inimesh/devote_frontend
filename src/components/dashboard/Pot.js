@@ -3,9 +3,9 @@ import React from 'react'
 const Pot = (props) => {
   return (
     <div>
-      {/* Pot picture (Letter 'S' for 'savings', or charity logo, or bank logo...) */}
-      {/* Name of receiving account */}
-      {/* Amount sent to the receiving account */}
+      <p>Receiver account picture here</p>
+      <div>{props.accountInfo.account_name}</div>
+      <div>{/* Total amount sent to receiver account */}</div>
 
     </div>
   )
