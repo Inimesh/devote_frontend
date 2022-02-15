@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ListTransactions from "./ListTransactions.js";
+import Pots from './Pots.js';
 import UserWindow from "./UserWindow.js";
 
 const Dashboard = (props) => {
@@ -9,7 +10,7 @@ const Dashboard = (props) => {
       <div className="row">
         <div className="col-sm-2"><UserWindow className="user_window" userInfo={props.userInfo} transactions={props.transactions}/></div>
         <div className="col-sm-6"><ListTransactions transactions={props.transactions} /></div>
-        <div className="col-sm-4">Pots{/* Pots components */}</div>
+        <div className="col-sm-4"><Pots />Pots</div>
       </div>
     </div>
   )
