@@ -3,6 +3,7 @@ import axios from 'axios';
 import Configs from "./components/configs.js";
 import {useEffect, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
+import Login from "./components/Login"
 
 // const API_URL = "http://localhost:3000/api/configs";
 
@@ -54,7 +55,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [userInfo, setUserInfo] = useState();
 
-  const handleSubmit = async e => {
+  const handleLogin = async e => {
     e.preventDefault();
     const user = {
       user: { username: username, password: password }
@@ -68,24 +69,17 @@ function App() {
     setUserInfo(response.data)
     // store the user in localStorage
     localStorage.setItem('user', JSON.stringify(response.data))
-    console.log(response.data)
     getTransactionsAPIData(response.data.user.id).then((transactions) => {
-      console.log(transactions)
-      console.log("in UseEffect 3")
       setTransactions(transactions);
   });
   };
 
   useEffect(() => {
-    console.log("in UseEffect 1")
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      console.log("in UseEffect 2")
       const foundUser = JSON.parse(loggedInUser);
       setUserInfo(foundUser);
       getTransactionsAPIData(foundUser.user.id).then((transactions) => {
-          console.log(transactions)
-          console.log("in UseEffect 3")
           setTransactions(transactions);
       });
     }
@@ -123,27 +117,30 @@ function App() {
     );
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username: </label>
-      <input
-        type="text"
-        value={username}
-        placeholder="enter a username"
-        onChange={({ target }) => setUsername(target.value)}
-      />
-      <div>
-        <label htmlFor="password">password: </label>
-        <input
-          type="password"
-          value={password}
-          placeholder="enter a password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
-  );
+    return (
+      <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+    )
+  // return (
+  //   <form onSubmit={handleSubmit}>
+  //     <label htmlFor="username">Username: </label>
+  //     <input
+  //       type="text"
+  //       value={username}
+  //       placeholder="enter a username"
+  //       onChange={({ target }) => setUsername(target.value)}
+  //     />
+  //     <div>
+  //       <label htmlFor="password">password: </label>
+  //       <input
+  //         type="password"
+  //         value={password}
+  //         placeholder="enter a password"
+  //         onChange={({ target }) => setPassword(target.value)}
+  //       />
+  //     </div>
+  //     <button type="submit">Login</button>
+  //   </form>
+  // );
 
 }
 
