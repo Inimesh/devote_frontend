@@ -19,10 +19,12 @@ const DateContainer = (props) => {
   return (
     <div className='container-fluid'>
       <h3>{props.date}</h3>
-      <div className='row'>
-        {transactions}
-        <hr />
-      </div>
+      <br />
+        <div className='row'>
+          {transactions}
+          <hr />
+        </div>
+      <br />
     </div>
   )
 

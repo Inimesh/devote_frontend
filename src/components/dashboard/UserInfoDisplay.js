@@ -7,8 +7,8 @@ const UserInfoDisplay = (props) => {
       <Avatar
         style={{ width: '100px', height: '100px' }}
         avatarStyle="Circle" />
-      <h2>{props.username}</h2>
-      <h3>{props.email}</h3>
+      <h3>{props.username}</h3>
+      <p>{props.email}</p>
     </div>
   )
 }

@@ -16,7 +16,8 @@ const TotalRounded = (props) => {
   
   return (
     <div>
-      Total rounded £{sumTotalRounded(props.transactions)}
+      Total rounded <br />
+      £{sumTotalRounded(props.transactions)}
     </div>
   )
 
