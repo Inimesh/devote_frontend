@@ -98,7 +98,6 @@ function App() {
   // Rendering to screen ---------------------------------------------------
   return (
     <div className="App">
-      <p>Receiver account info:</p>
       <Dashboard transactions={transactions} userInfo={userInfo} receiverAccountInfo={receiverAccountInfo}/>
     </div>
   );
