@@ -7,7 +7,7 @@ const Transaction = (props) => {
   return (
     <p className="col-12 d-flex justify-content-between">
       <span><span className="fw-bold">{props.name}</span><br /> <span>{formatDate(props.created_at)}</span></span>
-      <span><span className="fw-bold">-{props.amount}</span> {roundAmount ? <span className="ps-5 fw-bold round-up-amount">+{roundAmount}</span> : emptySpan}</span>
+      <span><span className="fw-bold">{props.amount}</span> {roundAmount ? <span className="ps-5 fw-bold round-up-amount">+{roundAmount}</span> : emptySpan}</span>
     </p>
   )
 }
