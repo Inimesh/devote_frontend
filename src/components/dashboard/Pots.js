@@ -3,9 +3,11 @@ import Pot from './Pot'
 
 
 const renderPots = (receiverAccountData) => {
-  return receiverAccountData.map((account) => {
-    return <Pot key={account.id} accountInfo={account}/>
+  const potArr = receiverAccountData.map((account) => {
+    // TODO This amount needs to be calculated based on spread determined by user. Default config is to split evenly
+    return <Pot key={account.id} accountInfo={account} />
   })
+  return potArr
 }
 
 const Pots = (props) => {
