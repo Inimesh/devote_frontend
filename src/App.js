@@ -36,11 +36,11 @@ import Dashboard from "./components/dashboard/Dashboard";
 const user = {
   id: 1
 }
-const API_URL = `http://localhost:3000/api/transactions?user_id=${user.id}`;
+const TRANSACTIONS_API_URL = `http://localhost:3000/api/transactions?user_id=${user.id}`;
 const USER_INFO_API_URL = `http://localhost:3000/api/users/${user.id}`;
 
-function getAPIData() {
-  return axios.get(API_URL).then((response => response.data))
+function getTransactionsAPIData() {
+  return axios.get(TRANSACTIONS_API_URL).then((response => response.data))
 }
 
 function getUserInfoAPIData() {
@@ -53,7 +53,7 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    getAPIData().then((transactions) => {
+    getTransactionsAPIData().then((transactions) => {
       if (mounted) {
         console.log(transactions)
         setTransactions(transactions);
