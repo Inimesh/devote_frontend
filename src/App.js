@@ -4,6 +4,7 @@ import Configs from "./components/configs.js";
 import {useEffect, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import Login from "./components/Login"
+import SignUp from './components/SignUp';
 
 // const API_URL = "http://localhost:3000/api/configs";
 
@@ -55,6 +56,10 @@ function App() {
   const [password, setPassword] = useState("");
   const [userInfo, setUserInfo] = useState();
 
+  const [email, setEmail] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [percentage, setPercentage] = useState("");
+
   const handleLogin = async e => {
     e.preventDefault();
     const user = {
@@ -71,7 +76,39 @@ function App() {
     localStorage.setItem('user', JSON.stringify(response.data))
     getTransactionsAPIData(response.data.user.id).then((transactions) => {
       setTransactions(transactions);
-  });
+    });
+  };
+
+  const handleSignUp = async e => {
+    e.preventDefault();
+    const user = {
+      user: { 
+        username: username,
+        email: email, 
+        password: password, 
+        password_confirmation: passwordConfirmation,
+        percentage: percentage
+      }
+    };
+    const response = await axios.post(
+      'http://localhost:3000/api/users',
+      user
+    );
+    const setSavingsPot = await axios.post(
+      'http://localhost:3000/api/receiver_accounts',
+      {
+        receiver_account: {
+          account_name: "Savings",
+          user_id: response.data.user.id
+        }
+      }
+    )
+    // to add configurations
+    setUserInfo(response.data)
+    localStorage.setItem('user', JSON.stringify(response.data))
+    getTransactionsAPIData(response.data.user.id).then((transactions) => {
+      setTransactions(transactions);
+    });
   };
 
   useEffect(() => {
@@ -118,7 +155,8 @@ function App() {
   }
 
     return (
-      <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+      // <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+      <SignUp handleSubmit={handleSignUp} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
     )
   // return (
   //   <form onSubmit={handleSubmit}>
