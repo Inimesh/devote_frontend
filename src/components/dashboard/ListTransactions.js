@@ -1,5 +1,5 @@
 import React from 'react';
-import Transaction from "./Transaction.js";
+import Transaction from "./Transaction";
 
 const ListTransactions = (props) => {
   const transactions = props.transactions.map((transaction) => {
@@ -20,4 +20,4 @@ const ListTransactions = (props) => {
   )
 }
 
-export default ListTransactions
+export default ListTransactions;
