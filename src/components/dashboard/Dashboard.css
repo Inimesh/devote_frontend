@@ -1,26 +1,31 @@
-.col-sm-2 {
+.userContainer {
   width: 20%;
+  display: flex;
   position: fixed;
 }
 
-.col-sm-4 {
+.postsContainer {
   width: 20%;
+  display: flex;
   position: fixed;
   padding-left: 70%;
 }
 
-.col-sm-6 {
+.ListTransactionsContainer {
   width: 65%;
   padding-left: 20%;
 }
 
 .titleTransactions {
   position: fixed;
-  /* padding: 10px; */
+  display: flex;
+  overflow-y: hidden;
   background-color: white;
+  padding: 20px;
 }
 
-/* .row {
-  scroll-behavior: smooth ;
-} */
-
+.scrollableTransactionList {
+  /* padding-top: 60px; */
+  scroll-behavior: smooth;
+  /* margin: 100px; */
+}
