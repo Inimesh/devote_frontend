@@ -36,15 +36,20 @@ import Dashboard from "./components/dashboard/Dashboard";
 const user = {
   id: 1
 }
-const API_URL = `http://localhost:3000/api/transactions?user_id=${user.id}`;
+const TRANSACTIONS_API_URL = `http://localhost:3000/api/transactions?user_id=${user.id}`;
 const USER_INFO_API_URL = `http://localhost:3000/api/users/${user.id}`;
+const ALL_RECEIVER_ACCOUNTS_API_URL = `http://localhost:3000/api/receiver_accounts`;
 
-function getAPIData() {
-  return axios.get(API_URL).then((response => response.data))
+function getTransactionsAPIData() {
+  return axios.get(TRANSACTIONS_API_URL).then((response => response.data))
 }
 
 function getUserInfoAPIData() {
   return axios.get(USER_INFO_API_URL).then((response => response.data))
+}
+
+function getAllReceiverAccountAPIData() {
+  return axios.get(ALL_RECEIVER_ACCOUNTS_API_URL).then((response => response.data))
 }
 
 function App() {
@@ -53,9 +58,8 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    getAPIData().then((transactions) => {
+    getTransactionsAPIData().then((transactions) => {
       if (mounted) {
-        console.log(transactions)
         setTransactions(transactions);
       }
     });
@@ -75,11 +79,26 @@ function App() {
     return () => (mounted = false);
   }, []);
 
+  const [receiverAccountInfo, setReceiverAccountInfo] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    getAllReceiverAccountAPIData().then((allReceiverAccountInfo) => {
+      if (mounted) {
+        const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
+          return account.user_id == user.id
+        });
+        console.log(userReceiverAccountInfo)
+        setReceiverAccountInfo(userReceiverAccountInfo);
+      }
+    });
+    return () => (mounted = false);
+  }, []);
 
   // Rendering to screen ---------------------------------------------------
   return (
     <div className="App">
-      <Dashboard transactions={transactions} userInfo={userInfo}/>
+      <Dashboard transactions={transactions} userInfo={userInfo} receiverAccountInfo={receiverAccountInfo}/>
     </div>
   );
 }
