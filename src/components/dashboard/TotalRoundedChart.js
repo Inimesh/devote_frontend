@@ -6,28 +6,38 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 
 const TotalRoundedChart = ({ transactions, receiverAccountInfo }) => {
 
-  const receivedAmountArr = receiverAccountInfo.map((account) => {
-    return account.received_amount
-  })
+  const generateChart = (transactions, receiverAccountInfo) => {
 
-  
+    const receivedAmountArr = receiverAccountInfo.map((account) => {
+      return account.received_amount
+    });
 
-  const data = {
-    lables: ['label 1', 'label 2', 'label 3'],
-    datasets: [{
-      data: [receivedAmountArr], // array of received_amounts from receiver_account data
-      backgroundColor: [] // array of corresponding colours
-    }]
-  }
+    console.log(receivedAmountArr)
 
-  return (
-    <div>
+    const data = {
+      lables: ['label 1', 'label 2', 'label 3'],
+      datasets: [{
+        data: [receivedAmountArr], // array of received_amounts from receiver_account data
+        backgroundColor: [] // array of corresponding colours
+      }]
+    }
+
+    return (
       <Doughnut
         data={data}
         options={{
           
         }}
       />
+    )
+  }
+
+  
+
+
+  return (
+    <div>
+      {generateChart(transactions, receiverAccountInfo)}
     </div>
   )
 }

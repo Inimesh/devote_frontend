@@ -88,7 +88,6 @@ function App() {
         const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
           return account.user_id == user.id
         });
-        console.log(userReceiverAccountInfo)
         setReceiverAccountInfo(userReceiverAccountInfo);
       }
     });
