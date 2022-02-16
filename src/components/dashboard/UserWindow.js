@@ -7,7 +7,7 @@ const UserWindow = (props) => {
   return (
     <div>
       <UserInfoDisplay username={props.userInfo.username} email={props.userInfo.email} />
-      <TotalRounded transactions={props.transactions}/>
+      <TotalRounded transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo}/>
     </div>
   )
 }

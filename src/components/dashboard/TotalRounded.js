@@ -1,4 +1,5 @@
 import React from 'react'
+import TotalRoundedChart from './TotalRoundedChart'
 
 const sumTotalRounded = (transactionsArr) => {
   const sum = transactionsArr.reduce((prev_value, current_transaction) => {
@@ -18,6 +19,7 @@ const TotalRounded = (props) => {
     <div>
       Total rounded <br />
       £{sumTotalRounded(props.transactions)}
+      {/* <TotalRoundedChart transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo} /> */}
     </div>
   )
 
