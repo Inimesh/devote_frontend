@@ -87,7 +87,6 @@ function App() {
         email: email, 
         password: password, 
         password_confirmation: passwordConfirmation,
-        percentage: percentage
       }
     };
     const response = await axios.post(
@@ -104,6 +103,30 @@ function App() {
       }
     )
     // to add configurations
+    let userConfig;
+    if (percentage) {
+      userConfig = {
+        config: {
+          round_up_to: percentage,
+          percentage: true,
+          user_id: response.data.user.id
+        }
+      }
+    } else {
+      userConfig = {
+        config: {
+          round_up_to: 1,
+          percentage: false,
+          user_id: response.data.user.id
+        }
+      }
+    }
+    
+    const setUserConfig = await axios.post(
+      'http://localhost:3000/api/configs',
+      userConfig
+    );
+
     setUserInfo(response.data)
     localStorage.setItem('user', JSON.stringify(response.data))
     getTransactionsAPIData(response.data.user.id).then((transactions) => {
@@ -155,8 +178,10 @@ function App() {
   }
 
     return (
-      // <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
-      <SignUp handleSubmit={handleSignUp} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+      <div>
+        <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+        <SignUp handleSubmit={handleSignUp} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+      </div>
     )
   // return (
   //   <form onSubmit={handleSubmit}>

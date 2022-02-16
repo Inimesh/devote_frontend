@@ -44,9 +44,9 @@ const SignUp = ({handleSubmit, username, setUsername, email, setEmail, password,
 
         <select name="percentage" onChange={({ target }) => setPercentage(target.value)}>
             <option value="">--Please choose an option--</option>
-            <option value="0.03">3%</option>
-            <option value="0.05">5%</option>
-            <option value="0.1">10%r</option>
+            <option value="3">3%</option>
+            <option value="5">5%</option>
+            <option value="10">10%</option>
         </select>
       </div>
       <button type="submit">Create Account</button>
