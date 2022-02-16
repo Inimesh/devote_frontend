@@ -1,56 +1,78 @@
 import React from "react";
+import "./SignUp.css";
 
 const SignUp = ({handleSubmit, username, setUsername, email, setEmail, password, setPassword, passwordConfirmation, setPasswordConfirmation, setPercentage}) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Full name: </label>
-      <input
-        type="text"
-        value={username}
-        placeholder="enter full name"
-        onChange={({ target }) => setUsername(target.value)}
-      />
-      <label htmlFor="email">Email: </label>
-      <input
-        type="email"
-        value={email}
-        placeholder="enter email"
-        onChange={({ target }) => setEmail(target.value)}
-      />
-      <div>
-        <label htmlFor="password">password: </label>
+    <div id="form-signup">
+      <h2 className="text-center">Sign Up</h2>
+      <hr/>
+      <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="username">Full name</label>
         <input
+          className="form-control" 
+          id="username" 
+          type="text"
+          value={username}
+          placeholder="enter full name"
+          onChange={({ target }) => setUsername(target.value)}
+        />
+      </div>
+      
+      <div className="mb-3">
+        <label className="form-label" htmlFor="email">Email</label>
+        <input
+          className="form-control"
+          id="email"
+          type="email"
+          value={email}
+          placeholder="enter email"
+          onChange={({ target }) => setEmail(target.value)}
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="password">password</label>
+        <input
+          className="form-control"
+          id="password"
           type="password"
           value={password}
           placeholder="enter a password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="passwordConfirmation">Confirm password: </label>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="passwordConfirmation">Confirm password</label>
         <input
+          className="form-control"
+          id="passwordConfirmation"
           type="password"
           value={passwordConfirmation}
           placeholder="confirm password"
           onChange={({ target }) => setPasswordConfirmation(target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="ccn">Credit Card Number:</label>
-        <input id="ccn" type="tel" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="xxxx xxxx xxxx xxxx" />
-      </div>
-      <div>
-        <label htmlFor="percentage">We will round up each transaction to the nearest pound, but if you prefer choose a percentage instead:</label>
 
-        <select name="percentage" onChange={({ target }) => setPercentage(target.value)}>
-            <option value="">--Please choose an option--</option>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="ccn">Credit Card Number</label>
+        <input className="form-control" id="ccn" type="tel" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="xxxx xxxx xxxx xxxx" />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="percentage">We will round up each transaction to the nearest pound, but if you prefer choose a percentage instead:</label>
+        <select className="form-select" name="percentage" onChange={({ target }) => setPercentage(target.value)} aria-label="round_up option">
+            <option value="">--Blank--</option>
             <option value="3">3%</option>
             <option value="5">5%</option>
             <option value="10">10%</option>
         </select>
       </div>
-      <button type="submit">Create Account</button>
+
+      <button type="submit" className="btn btn-success">Create Account</button>
     </form>
+    </div>
   );
 }
 
