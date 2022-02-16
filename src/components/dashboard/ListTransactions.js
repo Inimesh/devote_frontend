@@ -1,26 +1,37 @@
 import React from 'react';
-import Transaction from "./Transaction";
+import DateContainer from './DateContainer';
+import {formatDate} from "../../helperFunctions";
+
 
 const ListTransactions = (props) => {
-  const transactions = props.transactions.map((transaction) => {
-    return (
-      <Transaction
-        key={transaction.id} 
-        name={transaction.name} 
-        created_at={transaction.created_at}
-        amount={transaction.amount}
-        round_up={transaction.round_up}
-      />
-    )
-  })
+
+  const getDateContainers = (transactions) => {
+    // Set up hash where key = 'created_at date' and value = 'transaction'
+    const transactionsByDate = {};
+    transactions.forEach(transaction => {
+      const date = formatDate(transaction.created_at)
+      if ( date in transactionsByDate) {
+        transactionsByDate[date].push(transaction)
+      } else {
+        transactionsByDate[date] = [transaction]
+      }
+    });
+    console.log(transactionsByDate)
+
+    const dateContainerArr = []
+    for (const [date, transactions] of Object.entries(transactionsByDate)) {
+      dateContainerArr.push(
+        <DateContainer key={date} date={date} transactions={transactions} />
+      )
+    }
+    console.log(dateContainerArr)
+    return dateContainerArr;
+  }
+
   return (
     <div>
       <h1 className="fw-bold mb-5">Transactions</h1>
-      <div className='container-fluid'>
-        <div className='row'>
-          {transactions}
-        </div>
-      </div>
+      {getDateContainers(props.transactions)}
     </div>
   )
 }

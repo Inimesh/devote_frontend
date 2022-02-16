@@ -5,7 +5,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Login from "./components/Login"
 import SignUp from './components/SignUp';
 
-
 function getTransactionsAPIData(userId) {
   return axios.get(`http://localhost:3000/api/transactions?user_id=${userId}`).then((response => response.data))
 }
@@ -145,12 +144,12 @@ function App() {
     }
   }, []);
 
-
   // Rendering to screen ---------------------------------------------------
+
   if (userInfo) {
     return (
       <div className="App">
-        <Dashboard handleLogout={handleLogout} transactions={transactions} userInfo={userInfo.user}/>
+        <Dashboard handleLogout={handleLogout} transactions={transactions} userInfo={userInfo.user} receiverAccountInfo={receiverAccountInfo}/>
       </div>
     );
   }
@@ -161,7 +160,6 @@ function App() {
         <SignUp handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
       </div>
     )
-
 
 }
 
