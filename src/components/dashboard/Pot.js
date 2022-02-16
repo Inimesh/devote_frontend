@@ -1,9 +1,10 @@
 import React from 'react'
+import PotLogo from './PotLogo'
 
 const Pot = (props) => {
   return (
     <div>
-      <p>*Receiver account picture here*</p>
+      <PotLogo accountName={props.accountInfo.account_name} />
       <div style={{color: `${props.colour}`}}>
         <h2>{props.accountInfo.account_name}</h2>
         <div>£{props.accountInfo.received_amount}</div>
@@ -13,4 +14,4 @@ const Pot = (props) => {
   )
 }
 
-export default Pot
+export default Pot;
