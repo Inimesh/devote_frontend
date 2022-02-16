@@ -56,6 +56,8 @@ function App() {
   const [password, setPassword] = useState("");
   const [userInfo, setUserInfo] = useState();
 
+  const [signupUsername, setSignupUsername] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [percentage, setPercentage] = useState("");
@@ -83,9 +85,9 @@ function App() {
     e.preventDefault();
     const user = {
       user: { 
-        username: username,
+        username: signupUsername,
         email: email, 
-        password: password, 
+        password: signupPassword, 
         password_confirmation: passwordConfirmation,
       }
     };
@@ -180,7 +182,7 @@ function App() {
     return (
       <div>
         <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
-        <SignUp handleSubmit={handleSignUp} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+        <SignUp handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
       </div>
     )
   // return (
