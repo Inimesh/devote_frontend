@@ -1,0 +1,26 @@
+.col-sm-2 {
+  width: 20%;
+  position: fixed;
+}
+
+.col-sm-4 {
+  width: 20%;
+  position: fixed;
+  padding-left: 70%;
+}
+
+.col-sm-6 {
+  width: 65%;
+  padding-left: 20%;
+}
+
+.titleTransactions {
+  position: fixed;
+  /* padding: 10px; */
+  background-color: white;
+}
+
+/* .row {
+  scroll-behavior: smooth ;
+} */
+
