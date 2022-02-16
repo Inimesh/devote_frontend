@@ -1,28 +1,28 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip} from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip)
 
-const TotalRoundedChart = ({ receiverAccountInfo }) => {
+const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
 
   const generateChart = (receiverAccountInfo) => {
 
+    
     const receivedAmountArr = receiverAccountInfo.map((account) => {
       return account.received_amount
     });
-    
-    console.log(receivedAmountArr)
+    // console.log(receivedAmountArr)
     
     const colourScheme = ["#E27D60", "#85DCB8", "#E8A87C", "#C38D9E", "#41B3A3"]; // Move this to top level of app
     const colourSlice = colourScheme.slice(0, receivedAmountArr.length)
-
-    console.log(colourSlice)
-
+    // console.log(colourSlice)
+    
     const labelArr = receiverAccountInfo.map((account) => {
       return account.account_name
     });
-
+    // console.log(labelArr)
+    
     const data = {
       labels: labelArr,
       datasets: [{
@@ -31,10 +31,28 @@ const TotalRoundedChart = ({ receiverAccountInfo }) => {
         backgroundColor: colourSlice // array of corresponding colours
       }]
     };
+    
+    const plugins = [{
+      beforeDraw: function(chart) {
+       var width = chart.width,
+           height = chart.height,
+           ctx = chart.ctx;
+           ctx.restore();
+           var fontSize = (height / 140).toFixed(2);
+           ctx.font = fontSize + "em sans-serif";
+           ctx.textBaseline = "middle";
+           var text = `£${amount}`,
+           textX = Math.round((width - ctx.measureText(text).width) / 2),
+           textY = height / 2;
+           ctx.fillText(text, textX, textY);
+           ctx.save();
+      } 
+    }]
 
     return (
       <Doughnut
         data={data}
+        plugins={plugins}
       />
     );
   }
