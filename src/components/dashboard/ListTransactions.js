@@ -16,7 +16,6 @@ const ListTransactions = (props) => {
         transactionsByDate[date] = [transaction]
       }
     });
-    console.log(transactionsByDate)
 
     const dateContainerArr = []
     for (const [date, transactions] of Object.entries(transactionsByDate)) {
@@ -24,7 +23,6 @@ const ListTransactions = (props) => {
         <DateContainer key={date} date={date} transactions={transactions} />
       )
     }
-    console.log(dateContainerArr)
     return dateContainerArr;
   }
 

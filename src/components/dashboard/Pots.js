@@ -2,11 +2,6 @@ import React from 'react'
 import Pot from './Pot'
 
 
-// Need an array of nice hex colours
-// During the dynamic render of Pot components we need to assign a colour to each one
-// we can use their relative id values to assign to colour array index
-// ids: 15, 17, 34, 27, 101
-// array index: 0, 1, 3, 2, 4
 
 const renderPots = (receiverAccountData) => {
   const potArr = receiverAccountData.map((account, index) => {
