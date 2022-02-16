@@ -6,6 +6,7 @@ import UserInfoMenu from './UserInfoMenu'
 const UserWindow = (props) => {
   return (
     <div>
+      <button onClick={props.handleLogout}>logout</button>
       {/* UserInfoDisplay */}
       {/* TotalRounded */}
       {/* UserInfoMenu */}

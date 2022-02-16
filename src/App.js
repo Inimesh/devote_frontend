@@ -136,6 +136,13 @@ function App() {
     });
   };
 
+  const handleLogout = () => {
+    setUserInfo();
+    setUsername("");
+    setPassword("");
+    localStorage.clear();
+  };
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -174,7 +181,7 @@ function App() {
   if (userInfo) {
     return (
       <div className="App">
-        <Dashboard transactions={transactions} userInfo={userInfo.user}/>
+        <Dashboard handleLogout={handleLogout} transactions={transactions} userInfo={userInfo.user}/>
       </div>
     );
   }
