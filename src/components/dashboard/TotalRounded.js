@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import TotalRoundedChart from './TotalRoundedChart'
 
 const TotalRounded = (props) => {
@@ -19,7 +18,6 @@ const TotalRounded = (props) => {
   return (
     <div>
       Total rounded <br />
-      £{sumTotalRounded(props.transactions)}
       <TotalRoundedChart receiverAccountInfo={props.receiverAccountInfo} amount={sumTotalRounded(props.transactions)}/>
     </div>
   )

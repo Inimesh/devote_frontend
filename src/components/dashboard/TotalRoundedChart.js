@@ -6,24 +6,20 @@ ChartJS.register(ArcElement, Tooltip)
 
 const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
 
-  const generateChart = (receiverAccountInfo) => {
-
+  const generateData = (receiverAccountInfo) => {
     
     const receivedAmountArr = receiverAccountInfo.map((account) => {
       return account.received_amount
     });
-    // console.log(receivedAmountArr)
     
     const colourScheme = ["#E27D60", "#85DCB8", "#E8A87C", "#C38D9E", "#41B3A3"]; // Move this to top level of app
     const colourSlice = colourScheme.slice(0, receivedAmountArr.length)
-    // console.log(colourSlice)
     
     const labelArr = receiverAccountInfo.map((account) => {
       return account.account_name
     });
-    // console.log(labelArr)
     
-    const data = {
+    return {
       labels: labelArr,
       datasets: [{
         label: 'Amount Received',
@@ -32,7 +28,11 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
       }]
     };
     
-    const plugins = [{
+  }
+
+  const generatePlugins = (amount) => {
+
+    return [{
       beforeDraw: function(chart) {
        var width = chart.width,
            height = chart.height,
@@ -48,20 +48,15 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
            ctx.save();
       } 
     }]
-
-    return (
-      <Doughnut
-        data={data}
-        plugins={plugins}
-      />
-    );
   }
 
   return (
-    <div>
-      {generateChart(receiverAccountInfo)}
-    </div>
-  )
+    <Doughnut
+      data={generateData(receiverAccountInfo)}
+      plugins={generatePlugins(amount)}
+    />
+  );
+
 }
 
 export default TotalRoundedChart
