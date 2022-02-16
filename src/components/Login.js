@@ -3,9 +3,9 @@ import "./Login.css"
 
 const Login = ({handleSubmit, username, setUsername, password, setPassword}) => {
   return (
-    <div className="form-signin">
+    <div className="form-login">
       <form onSubmit={handleSubmit}>
-        <img className="mb-4 text-center" />
+        <img src="../../public/favicon.ico" className="mb-4 text-center" />
         <h1 className="h3 mb-3 fw-normal text-center">Please login</h1>
         <div className="form-floating text-center">
           <label htmlFor="username">Username: </label>
@@ -28,7 +28,7 @@ const Login = ({handleSubmit, username, setUsername, password, setPassword}) => 
           />
         </div>
         <button
-          className="w-100 Login-btn btn btn-lg btn-primary"
+          className="w-100 login-btn btn btn-lg btn-primary"
           type="submit"
         >
           Login
