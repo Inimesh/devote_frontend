@@ -28,4 +28,8 @@
   margin-top: 15px;
 }
 
-
+#pots-container {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 85vh;
+}
