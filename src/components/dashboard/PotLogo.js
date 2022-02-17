@@ -2,6 +2,7 @@ import React from 'react'
 import cancerResearchLogo from '../../../src/cancer-research.png'
 import bhfLogo from '../../../src/bhf.jpg'
 import savingsLogo from '../../../src/savingsLogo.png'
+import investingLogo from '../../../src/investing.png'
 
 
 const PotLogo = (props) => {
@@ -13,6 +14,8 @@ const PotLogo = (props) => {
             return bhfLogo
         } else if (passedname === "Savings") {
             return savingsLogo
+        } else if (passedname === "Investing") {
+            return investingLogo
         }
     }
 
