@@ -27,7 +27,7 @@ const ListTransactions = (props) => {
   }
 
   return (
-    <div>
+    <div class="top-align-window">
       <h1 className="fw-bold mb-5">Transactions</h1>
       {getDateContainers(props.transactions)}
     </div>
