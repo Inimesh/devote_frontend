@@ -28,6 +28,16 @@ function App() {
 
   const [receiverAccountInfo, setReceiverAccountInfo] = useState([]);
 
+  const [show, setShow] = useState(false)
+
+  const showSignup = () => {
+    setShow(true)
+  };
+
+  const hideSignup = () => {
+    setShow(false)
+  };
+
   const handleLogin = async e => {
     e.preventDefault();
     const user = {
@@ -157,7 +167,10 @@ function App() {
     return (
       <div>
         <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
-        <SignUp handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+        <SignUp show={show} handleClose={hideSignup} handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+        <button type="button" onClick={showSignup}>
+          Create Account
+        </button>
       </div>
     )
 
