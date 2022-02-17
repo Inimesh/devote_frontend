@@ -17,7 +17,6 @@ const TotalRounded = (props) => {
 
   return (
     <div>
-      Total rounded <br />
       <TotalRoundedChart receiverAccountInfo={props.receiverAccountInfo} amount={sumTotalRounded(props.transactions)}/>
     </div>
   )

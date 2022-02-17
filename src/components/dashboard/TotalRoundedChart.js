@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip} from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
 
@@ -6,6 +6,13 @@ ChartJS.register(ArcElement, Tooltip)
 
 const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
 
+  const [ key, setKey] = useState(0)
+
+  useEffect(() => {
+    setKey((key) => key + 1)
+    console.log(key)
+  }, amount)
+  
   const generateData = (receiverAccountInfo) => {
     
     const receivedAmountArr = receiverAccountInfo.map((account) => {
@@ -54,6 +61,7 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
     <Doughnut
       data={generateData(receiverAccountInfo)}
       plugins={generatePlugins(amount)}
+      key={key}
     />
   );
 

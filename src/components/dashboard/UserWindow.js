@@ -1,7 +1,6 @@
-import React from 'react'
-import TotalRounded from './TotalRounded'
-import UserInfoDisplay from './UserInfoDisplay'
-import UserInfoMenu from './Navbar'
+import React from 'react';
+import UserInfoDisplay from './UserInfoDisplay';
+import UserInfoMenu from './Navbar';
 
 const UserWindow = (props) => {
   return (
