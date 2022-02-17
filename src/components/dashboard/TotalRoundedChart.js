@@ -10,8 +10,7 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
 
   useEffect(() => {
     setKey((key) => key + 1)
-    console.log(key)
-  }, amount)
+  }, [amount])
   
   const generateData = (receiverAccountInfo) => {
     
