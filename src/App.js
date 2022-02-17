@@ -166,11 +166,8 @@ function App() {
 
     return (
       <div>
-        <Login handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+        <Login showSignup={showSignup} handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
         <SignUp show={show} handleClose={hideSignup} handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
-        <button type="button" onClick={showSignup}>
-          Create Account
-        </button>
       </div>
     )
 

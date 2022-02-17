@@ -3,6 +3,7 @@ import "./Login.css";
 import Logo from "./devotelogo.png";
 
 const Login = ({
+  showSignup,
   handleSubmit,
   username,
   setUsername,
@@ -50,6 +51,10 @@ const Login = ({
               type="submit"
             >
               Login
+            </button>
+            <hr />
+            <button type="button" className="w-100 btn btn-lg btn-success" onClick={showSignup}>
+              Create New Account
             </button>
           </form>
         </div>
