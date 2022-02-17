@@ -8,9 +8,9 @@ const Dashboard = (props) => {
   return (
     <div className="container-fluid p-sm-3">
       <div className="row">
-        <div className="col-sm-2"><UserWindow className="user_window" userInfo={props.userInfo} transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo}/></div>
+        <div className="col-sm-2"><UserWindow className="user_window" userInfo={props.userInfo} handleLogout={props.handleLogout} /></div>
         <div className="col-sm-6"><ListTransactions transactions={props.transactions} /></div>
-        <div className="col-sm-4"><Pots receiverAccountInfo={props.receiverAccountInfo}/></div>
+        <div className="col-sm-4"><Pots receiverAccountInfo={props.receiverAccountInfo} transactions={props.transactions}/></div>
       </div>
     </div>
   )

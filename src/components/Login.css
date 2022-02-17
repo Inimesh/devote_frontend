@@ -1,0 +1,15 @@
+.loginContainer {
+  max-width: 900px;
+  align-content: center;
+  margin: auto;
+}
+
+.login-btn {
+  margin-top: 12px;
+  background-color: #6f19f5 !important;
+}
+
+.logo {
+  max-width: 300px;
+  align-self: center;
+}

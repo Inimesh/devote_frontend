@@ -1,106 +1,177 @@
 import './App.css';
 import axios from 'axios';
-import Configs from "./components/configs.js";
 import {useEffect, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
+import Login from "./components/Login"
+import SignUp from './components/SignUp';
 
-// const API_URL = "http://localhost:3000/api/configs";
-
-// function getAPIData() {
-//   return axios.get(API_URL).then((response => response.data))
-// }
-
-// function App() {
-
-//   const [configs, setConfigs] = useState([]);
-
-//   useEffect(() => {
-//     let mounted = true;
-//     getAPIData().then((items) => {
-//       if (mounted) {
-//         setConfigs(items);
-//       }
-//     });
-//     return () => (mounted = false);
-//   }, []);
-
-//   return (
-//     <div className="App">
-//       <h1>Hello</h1>
-//       <Configs configs={configs} />
-//     </div>
-//   );
-// }
-
-// API calling ----------------------------------------------------------
-const user = {
-  id: 1
-}
-const TRANSACTIONS_API_URL = `http://localhost:3000/api/transactions?user_id=${user.id}`;
-const USER_INFO_API_URL = `http://localhost:3000/api/users/${user.id}`;
-const ALL_RECEIVER_ACCOUNTS_API_URL = `http://localhost:3000/api/receiver_accounts`;
-
-function getTransactionsAPIData() {
-  return axios.get(TRANSACTIONS_API_URL).then((response => response.data))
-}
-
-function getUserInfoAPIData() {
-  return axios.get(USER_INFO_API_URL).then((response => response.data))
+function getTransactionsAPIData(userId) {
+  return axios.get(`http://localhost:3000/api/transactions?user_id=${userId}`).then((response => response.data))
 }
 
 function getAllReceiverAccountAPIData() {
-  return axios.get(ALL_RECEIVER_ACCOUNTS_API_URL).then((response => response.data))
+  return axios.get(`http://localhost:3000/api/receiver_accounts`).then((response => response.data))
 }
 
 function App() {
 
   const [transactions, setTransactions] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState();
 
-  useEffect(() => {
-    let mounted = true;
-    getTransactionsAPIData().then((transactions) => {
-      if (mounted) {
-        setTransactions(transactions);
-      }
-    });
-    return () => (mounted = false);
-  }, []);
-
-
-  const [userInfo, setUserInfo] = useState([]);
-
-  useEffect(() => {
-    let mounted = true;
-    getUserInfoAPIData().then((userInfo) => {
-      if (mounted) {
-        setUserInfo(userInfo);
-      }
-    });
-    return () => (mounted = false);
-  }, []);
+  const [signupUsername, setSignupUsername] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [percentage, setPercentage] = useState("");
 
   const [receiverAccountInfo, setReceiverAccountInfo] = useState([]);
 
-  useEffect(() => {
-    let mounted = true;
-    getAllReceiverAccountAPIData().then((allReceiverAccountInfo) => {
-      if (mounted) {
-        const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
-          return account.user_id == user.id
-        });
-        console.log(userReceiverAccountInfo)
-        setReceiverAccountInfo(userReceiverAccountInfo);
-      }
+  const [show, setShow] = useState(false)
+
+  const showSignup = () => {
+    setShow(true)
+  };
+
+  const hideSignup = () => {
+    setShow(false)
+  };
+
+  const handleLogin = async e => {
+    e.preventDefault();
+    const user = {
+      user: { username: username, password: password }
+    };
+    // send the username and password to the server
+    const response = await axios.post(
+      'http://localhost:3000/api/login',
+      user
+    );
+    // set the state of the user
+    setUserInfo(response.data)
+    // store the user in localStorage
+    localStorage.setItem('user', JSON.stringify(response.data))
+    
+    getTransactionsAPIData(response.data.user.id).then((transactions) => {
+      setTransactions(transactions);
     });
-    return () => (mounted = false);
+
+    getAllReceiverAccountAPIData().then((allReceiverAccountInfo) => {
+      const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
+          return account.user_id === response.data.user.id
+        });
+        setReceiverAccountInfo(userReceiverAccountInfo);
+        console.log(receiverAccountInfo)
+    });
+  };
+
+  const handleSignUp = async e => {
+    e.preventDefault();
+    const user = {
+      user: { 
+        username: signupUsername,
+        email: email, 
+        password: signupPassword, 
+        password_confirmation: passwordConfirmation,
+      }
+    };
+    const response = await axios.post(
+      'http://localhost:3000/api/users',
+      user
+    );
+    const setSavingsPot = await axios.post(
+      'http://localhost:3000/api/receiver_accounts',
+      {
+        receiver_account: {
+          account_name: "Savings",
+          user_id: response.data.user.id
+        }
+      }
+    )
+    // to add configurations
+    let userConfig;
+    if (percentage) {
+      userConfig = {
+        config: {
+          round_up_to: percentage,
+          percentage: true,
+          user_id: response.data.user.id
+        }
+      }
+    } else {
+      userConfig = {
+        config: {
+          round_up_to: 1,
+          percentage: false,
+          user_id: response.data.user.id
+        }
+      }
+    }
+    
+    const setUserConfig = await axios.post(
+      'http://localhost:3000/api/configs',
+      userConfig
+    );
+
+    setUserInfo(response.data)
+    localStorage.setItem('user', JSON.stringify(response.data))
+    
+    getTransactionsAPIData(response.data.user.id).then((transactions) => {
+      setTransactions(transactions);
+    });
+
+    getAllReceiverAccountAPIData().then((allReceiverAccountInfo) => {
+      const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
+          return account.user_id === response.data.user.id
+        });
+        setReceiverAccountInfo(userReceiverAccountInfo);
+    });
+    hideSignup();
+  };
+
+  const handleLogout = () => {
+    setUserInfo();
+    setUsername("");
+    setPassword("");
+    localStorage.clear();
+  };
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUserInfo(foundUser);
+      getTransactionsAPIData(foundUser.user.id).then((transactions) => {
+          setTransactions(transactions);
+      });
+
+      getAllReceiverAccountAPIData().then((allReceiverAccountInfo) => {
+        const userReceiverAccountInfo = allReceiverAccountInfo.filter(account => {
+            return account.user_id === foundUser.user.id
+          });
+          setReceiverAccountInfo(userReceiverAccountInfo);
+      });
+    }
   }, []);
 
   // Rendering to screen ---------------------------------------------------
-  return (
-    <div className="App">
-      <Dashboard transactions={transactions} userInfo={userInfo} receiverAccountInfo={receiverAccountInfo}/>
-    </div>
-  );
+
+  if (userInfo) {
+    return (
+      <div className="App">
+        <Dashboard handleLogout={handleLogout} transactions={transactions} userInfo={userInfo.user} receiverAccountInfo={receiverAccountInfo}/>
+      </div>
+    );
+  }
+
+    return (
+      <div>
+        <Login showSignup={showSignup} handleSubmit={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
+        <SignUp show={show} handleClose={hideSignup} handleSubmit={handleSignUp} username={signupUsername} setUsername={setSignupUsername} email={email} setEmail={setEmail} password={signupPassword} setPassword={setSignupPassword} passwordConfirmation={passwordConfirmation} setPasswordConfirmation={setPasswordConfirmation} setPercentage={setPercentage} />
+      </div>
+    )
+
 }
 
 export default App;
