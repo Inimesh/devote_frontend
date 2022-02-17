@@ -16,10 +16,12 @@ const renderPots = (receiverAccountInfo, transactions) => {
 
 const Pots = (props) => {
   return (
-    <div>
+    <div class="top-align-window">
       <h1 className="fw-bold mb-5">Pots</h1>
-      <TotalRounded transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo}/>
-      <p align="center">{renderPots(props.receiverAccountInfo, props.transactions)}</p>
+        <div className="pots-container">
+          <TotalRounded transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo}/>
+          <p align="center">{renderPots(props.receiverAccountInfo, props.transactions)}</p>
+        </div>
     </div>
   )
 }

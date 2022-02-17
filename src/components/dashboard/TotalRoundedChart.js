@@ -57,11 +57,13 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
   }
 
   return (
+    <div className="w-50">
     <Doughnut
       data={generateData(receiverAccountInfo)}
       plugins={generatePlugins(amount)}
       key={key}
     />
+    </div>
   );
 
 }
