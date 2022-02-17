@@ -1,6 +1,10 @@
 import React from 'react';
 import DateContainer from './DateContainer';
 import {formatDate} from "../../helperFunctions";
+const scroll = {
+  overflow: 'auto',
+  height: '85vh',
+}
 
 
 const ListTransactions = (props) => {
@@ -29,7 +33,9 @@ const ListTransactions = (props) => {
   return (
     <div class="top-align-window">
       <h1 class="transactions-font">transactions</h1>
-      {getDateContainers(props.transactions)}
+        <div style={scroll}>
+          {getDateContainers(props.transactions)}
+        </div>
     </div>
   )
 }

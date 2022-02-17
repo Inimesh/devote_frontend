@@ -44,7 +44,7 @@ const TotalRoundedChart = ({ receiverAccountInfo, amount }) => {
            height = chart.height,
            ctx = chart.ctx;
            ctx.restore();
-           var fontSize = (height / 140).toFixed(2);
+           var fontSize = (height / 200).toFixed(2);
            ctx.font = fontSize + "em sans-serif";
            ctx.textBaseline = "middle";
            var text = `£${amount}`,
