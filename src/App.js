@@ -127,6 +127,7 @@ function App() {
         });
         setReceiverAccountInfo(userReceiverAccountInfo);
     });
+    hideSignup();
   };
 
   const handleLogout = () => {
