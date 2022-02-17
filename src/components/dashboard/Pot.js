@@ -25,7 +25,6 @@ const Pot = (props) => {
       <div style={{color: `${props.colour}`}}>
         <h5 class="card-title">{props.accountInfo.account_name}</h5>
         <p class="card-text">£{(sumTotalRounded(props.transactions)/props.potNo).toFixed(2)}</p>
-
       </div>
     </div>
    </div>

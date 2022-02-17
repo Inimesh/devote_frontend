@@ -4,8 +4,8 @@ import React from 'react';
 const UserInfoDisplay = (props) => {
   return (
     <div>
-      <h3>{props.username}</h3>
-      <p>{props.email}</p>
+      <h3 class="username-font">{props.username}</h3>
+      <p class="email-font">{props.email}</p>
     </div>
   )
 }
