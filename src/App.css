@@ -1,3 +1,20 @@
 .round-up-amount {
   color: #09a179;
 }
+
+.pot {
+  background-color: #09a179;
+}
+
+.card {
+  margin: 5px;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  padding-left: 7%;
+  padding-right: 7%;
+  border-radius: 10%;
+  border-color: rgb(131, 39, 192);
+  border-width: 4px;
+  background-color: white;
+  
+}

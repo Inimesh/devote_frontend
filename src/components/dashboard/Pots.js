@@ -21,9 +21,11 @@ const renderPots = (receiverAccountData) => {
 const Pots = (props) => {
   return (
     <div>
-      {renderPots(props.receiverAccountInfo)}
+      <h1 className="fw-bold mb-5">Pots</h1>
+      <p align="center">{renderPots(props.receiverAccountInfo)}</p>
     </div>
   )
 }
+
 
 export default Pots
