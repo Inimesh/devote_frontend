@@ -1,5 +1,10 @@
 import React from 'react';
 import Transaction from "./Transaction";
+const scroll = {
+  overflow: 'auto',
+  height: '85vh',
+}
+
 
 const DateContainer = (props) => {
   const transactions = props.transactions.map((transaction) => {
@@ -17,7 +22,7 @@ const DateContainer = (props) => {
 
 
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid' style={scroll}>
       <h3 class="date-font">{props.date}</h3>
       <br />
         <div className='row'>

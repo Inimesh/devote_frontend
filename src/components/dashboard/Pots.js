@@ -18,7 +18,7 @@ const Pots = (props) => {
   return (
     <div class="top-align-window">
       <h1 class="pots-font">pots</h1>
-        <div className="pots-container">
+        <div id="pots-container" className="pots-container">
           <TotalRounded transactions={props.transactions} receiverAccountInfo={props.receiverAccountInfo}/>
           <div align="center">{renderPots(props.receiverAccountInfo, props.transactions)}</div>
         </div>

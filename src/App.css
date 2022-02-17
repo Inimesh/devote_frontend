@@ -31,6 +31,12 @@
   margin-top: 15px;
 }
 
+#pots-container {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 85vh;
+}
+
 .transactions-font {
   font-family: 'Manjari', serif;
   font-size: 40pt;
