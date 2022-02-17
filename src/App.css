@@ -13,7 +13,7 @@
   padding-left: 7%;
   padding-right: 7%;
   border-radius: 10%;
-  border-color: rgb(131, 39, 192);
+  border-color: rgb(1, 1, 2);
   border-width: 4px;
   background-color: white;
   
@@ -22,10 +22,51 @@
 
 .pots-container{
   margin-left: 15%;
+  font-family: 'Manjari', serif;
+  font-style: bold;
+  font-size: 18pt;
 }
 
 .top-align-window{
   margin-top: 15px;
 }
 
+.transactions-font {
+  font-family: 'Manjari', serif;
+  font-size: 40pt;
+  padding-top: 1%;
 
+}
+
+.pots-font {
+  font-family: 'Manjari', serif;
+  font-style: bold;
+  font-size: 40pt;
+  padding-top: 1%;
+}
+
+.date-font {
+  font-family: 'Manjari', serif;
+  font-style: bold;
+  font-size: 16pt;
+
+}
+
+.username-font {
+  font-family: 'Manjari', serif;
+  font-style: bold;
+  font-size: 20pt;
+  
+}
+
+.email-font {
+  font-family: 'Manjari', serif;
+  font-style: bold;
+  font-size: 15pt;
+}
+
+.card-text {
+  font-family: 'Arial', serif;
+  font-style: bold;
+  font-size: 25pt;
+}
